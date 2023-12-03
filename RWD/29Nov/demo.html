@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body align="center">
+    <script>
+        function Addition() {
+            var n1 = document.getElementById('num1').value;
+            var n2 = document.getElementById('num2').value;
+            var ans = parseInt(n1) + parseInt(n2);
+            document.getElementById('res').value = ans;
+        }
+
+        function cancel2() {
+            document.getElementById('num1').value = " ";
+            document.getElementById('num2').value = " ";
+            document.getElementById('res').value = " ";
+        }
+
+
+        function subtract() {
+            var n1 = document.getElementsByName('num1')[0].value;
+            var n2 = document.getElementsByName('num2')[0].value;
+            var ans = parseInt(n1) - parseInt(n2);
+            document.getElementsByName('res')[0].value = ans;
+        }   
+
+        function cancel2() {
+            document.getElementById('num1').value = " ";
+            document.getElementById('num2').value = " ";
+            document.getElementById('res').value = " ";
+        }
+
+
+
+
+    </script>
+
+    <h3>getElementById</h3>
+
+    Num1: <input type="text" id="num1"><br><br>
+    Num2: <input type="text" id="num2"><br><br>
+    Result: <input type="text" id="res" readonly><br><br>
+
+    <button onclick="Addition()">Add</button>&nbsp;&nbsp;
+    <button onclick="cancel()">Cancel</button>
+
+    <h3>getElementsByName</h3>
+
+    Num1:<input type="text"  name="num1"><br><br>
+    Num1:<input type="text"  name="num2"><br><br>
+    Result:<input type="text" name="res" readonly><br><br>
+    
+    <button onclick="subtract()">substraction</button>&nbsp;&nbsp;
+    <button onclick="cancel2()">Cancel</button>
+</body>
+
+
+</html>

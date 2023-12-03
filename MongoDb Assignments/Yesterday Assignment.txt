@@ -1,0 +1,288 @@
+                                      Assignment1:01/11/2023
+
+
+1.Display Name,Age of Student
+
+
+Student> db.Student.find({},{name:1,age:1,_id:0});
+[
+  { name: 'Raj', age: 23 },
+  {},
+  { name: 'Rohit', age: 35 },
+  { name: 'Shubhman', age: 24 },
+  { name: 'Virat', age: 34 },
+  { name: 'Ashish', age: 23 },
+  { name: 'YourName', age: 23 },
+  { name: 'Shreyash', age: 24 },
+  { name: 'Mithali', age: 31 },
+  { name: 'Ishan', age: 24 },
+  { name: 'Smriti', age: 26 },
+  { name: 'Rahuk', age: 28 },
+  { name: 'Harmanpreet', age: 24 }
+]
+
+2.Display the students whose age is greater than 25
+
+Student> db.Student.find({age:{$gt:25}},{name:1,age:1,_id:0});
+[
+  { name: 'Rohit', age: 35 },
+  { name: 'Virat', age: 34 },
+  { name: 'Mithali', age: 31 },
+  { name: 'Smriti', age: 26 },
+  { name: 'Rahuk', age: 28 }
+]
+
+3.Display Student names ,along whith their city
+
+Student> db.Student.find({},{name:1,'address.city':1});
+  { _id: 116, name: 'Shreyash', address: [ { city: 'pune' } ] },
+  { _id: 117, name: 'Mithali', address: [ { city: 'pune' } ] },
+  { _id: 118, name: 'Ishan', address: [ { city: 'pune' } ] },
+  { _id: 119, name: 'Smriti', address: [ { city: 'pune' } ] },
+  { _id: 120, name: 'Rahuk', address: [ { city: 'pune' } ] },
+  { _id: 121, name: 'Harmanpreet', address: [ { city: 'pune' } ] }
+
+
+4.Display all male students and also count how many male students
+
+Student> db.Student.find({gender:'Male'},{name:1,_id:0})
+[
+  { name: 'Ashish' },
+  { name: 'YourName' },
+  { name: 'Shreyash' },
+  { name: 'Ishan' }
+]
+Student> db.Student.find({gender:'Male'},{name:1,_id:0}).count()
+4
+Student>
+
+5.Display birthdate ,name ,gender pincode and exclude id
+Student> db.Student.find({},{name:1,birthdate:1,gender:1,'address.pincode':1,_id:0}); 
+
+
+
+
+							ASSIGNMENT ON MOVIES
+
+
+
+1.Display movies whose rating is less than 5
+
+Movies> db.Movie.find({rating:{$lt:5}},{name:1,rating:1,_id:0});
+[
+  { name: '3 idiots', rating: 3 },
+  { name: 'aradhana', rating: 3 },
+  { name: 'chichore', rating: 4.3 },
+  { name: 'padmavat', rating: 4 },
+  { name: 'Dil dhadakane do', rating: 3 },
+  { name: 'Andhadhund', rating: 4 },
+  { name: 'paa', rating: 2 },
+  { name: 'Andhadhund', rating: 4 }
+]
+
+
+2.Count How many documents on movie collection
+
+Movies> db.Movie.find().count()
+18
+
+3.Display records whose price is less than 500 and skip first 2 documents
+
+Movies> db.Movie.find({price:{$lt:500}},{name:1,rating:1,_id:0}).skip(2);
+[
+  { name: 'mission mangal', rating: 6 },
+  { name: 'chichore', rating: 4.3 },
+  { name: 'dream girl', rating: null },
+  { name: 'padmavat', rating: 4 },
+  {},
+  { name: 'newton' },
+  { name: 'kahani 2', rating: 5 },
+  { name: 'Dil dhadakane do', rating: 3 },
+  { name: 'sholay', rating: 6 },
+  { name: 'Kesari', rating: 6 },
+  { name: 'paa', rating: 2 },
+  { name: 'kahani', rating: 8 },
+  { name: 'Andhadhund', rating: 4 },
+  { name: 'lagaan', rating: 6 }
+]
+
+4.Diplay name ,rating,price and ticket number whose rating is less than 3
+
+Movies> db.Movie.find({rating:{$lt:3}},{name:1,rating:1,price:1,ticket_no:1,_id:0});
+[ { name: 'paa', rating: 2, price: 270, ticket_no: 210 } ]
+
+5.Display all movies whose rating is greater than 4 and less than 8
+
+Movies> db.Movie.find({rating:{$lt:8,$gt:4}},{name:1,rating:1,_id:0});
+[
+  { name: 'uri', rating: 5 },
+  { name: 'mission mangal', rating: 6 },
+  { name: 'chichore', rating: 4.3 },
+  { name: 'kahani 2', rating: 5 },
+  { name: 'sholay', rating: 6 },
+  { name: 'Kesari', rating: 6 },
+  { name: 'lagaan', rating: 6 }
+]
+
+6.Find out rating and price of sholay movie
+
+
+Movies> db.Movie.find({name:'sholay'},{name:1,rating:1,price:1,_id:0});
+[ { name: 'sholay', rating: 6, price: 350 } ]
+
+7.Find out all movies whose rating is 4,5,6
+ 
+
+Movies> db.Movie.find({ rating: { $in: [4, 5, 6] }, }, { name: 1, rating: 1, _id: 0 });
+[
+  { name: 'uri', rating: 5 },
+  { name: 'mission mangal', rating: 6 },
+  { name: 'padmavat', rating: 4 },
+  { name: 'kahani 2', rating: 5 },
+  { name: 'sholay', rating: 6 },
+  { name: 'Kesari', rating: 6 },
+  { name: 'Andhadhund', rating: 4 },
+  { name: 'Andhadhund', rating: 4 },
+  { name: 'lagaan', rating: 6 }
+]
+
+8.Find out all movies whose price is other than 200,300,450
+
+Movies> db.Movie.find({ price: { $nin: [200, 300, 450] }, }, { name: 1, rating: 1,price:1, _id: 0 });
+[
+  { name: 'uri', rating: 5 },
+  { name: 'aradhana', rating: 3, price: 260 },
+  { name: 'mission mangal', price: 350, rating: 6 },
+  { name: 'chichore', price: 274, rating: 4.3 },
+  { name: 'dream girl', price: 250, rating: null },
+  { name: 'padmavat', rating: 4, price: 250 },
+  { price: 280 },
+  { name: 'newton', price: 310 },
+  { name: 'Dil dhadakane do', rating: 3, price: 340 },
+  { name: 'sholay', rating: 6, price: 350 },
+  { name: 'Kesari', rating: 6, price: 350 },
+  { name: 'Andhadhund', price: null, rating: 4 },
+  { name: 'paa', rating: 2, price: 270 },
+  { name: 'Andhadhund', price: 400, rating: 4 },
+  { name: 'lagaan', rating: 6, price: 350 }
+]
+
+
+9. Find out all movies with odd rating
+
+Movies> db.Movie.find({ rating: { $mod: [2, 1] } },{name:1,rating:1,_id:0});
+[
+  { name: 'uri', rating: 5 },
+  { name: '3 idiots', rating: 3 },
+  { name: 'aradhana', rating: 3 },
+  { name: 'kahani 2', rating: 5 },
+  { name: 'Dil dhadakane do', rating: 3 }
+]
+
+10.Display movies which is having even price
+
+Movies> db.Movie.find({ price: { $mod: [2, 0] }},{name:1,price:1,_id:0});
+[
+  { name: '3 idiots', price: 200 },
+  { name: 'aradhana', price: 260 },
+  { name: 'mission mangal', price: 350 },
+  { name: 'chichore', price: 274 },
+  { name: 'dream girl', price: 250 },
+  { name: 'padmavat', price: 250 },
+  { price: 280 },
+  { name: 'newton', price: 310 },
+  { name: 'kahani 2', price: 200 },
+  { name: 'Dil dhadakane do', price: 340 },
+  { name: 'sholay', price: 350 },
+  { name: 'Kesari', price: 350 },
+  { name: 'paa', price: 270 },
+  { name: 'kahani', price: 200 },
+  { name: 'Andhadhund', price: 400 },
+  { name: 'lagaan', price: 350 }
+]
+
+
+
+
+
+                                                                                 ASSIGNMENT 2/11/23
+
+
+1.find out movie who is having actor amitabh
+
+Movies> db.Movie.find({actor:'Amitabh'},{name:1,_id:0});
+[ { name: 'sholay' }, { name: 'paa' } ]
+
+2.display movie name start with K or k 
+
+Movies> db.Movie.find({ name: { $regex: /^[Kk]/ } },{name:1,_id:0});
+[ { name: 'kahani 2' }, { name: 'Kesari' }, { name: 'kahani' } ]
+
+3.find out Movies who start with k
+
+Movies> db.Movie.find({ name: { $regex: /^K/ } },{name:1,_id:0});
+[ { name: 'Kesari' } ]
+
+4.Display movie start with p and end with t
+
+Movies> db.Movie.find({ name: { $regex: /^p.*t/ } },{name:1,_id:0});
+[ { name: 'padmavat' } ]
+
+5.Find out movie which is having 'o' at third position
+
+Movies> db.Movie.find({ name: { $regex: /^..o/ } },{name:1,_id:0});
+[ { name: 'sholay' } ]
+
+6.Display the movies whos is having m at any place
+
+Movies> db.Movie.find({ name: { $regex: /^.*m/ } },{name:1,_id:0});
+[
+  { name: 'mission mangal' },
+  { name: 'dream girl' },
+  { name: 'padmavat' }
+]
+
+7.Display movie name which contain 'es'
+
+Movies> db.Movie.find({ name: { $regex: /es/i } },{name:1,_id:0});
+[ { name: 'Kesari' } ]
+
+
+8.Find out movies which is having 3 actors
+
+Movies> db.Movie.find({ actor:{ $size: 3 } },{name:1,actor:1,_id:0});
+[
+  { name: 'uri', actor: [ 'vicky kaushal', 'yami', 'Paresh Rawal' ] },
+  { name: 'aradhana', actor: [ 'amitabh', 'prem', 'rajesh khanna' ] },
+  { name: 'paa', actor: [ 'Amitabh', 'vidya balan', 'Abhishek' ] }
+]
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="C:\Users\manis\Desktop\RWD\2Dec\j.js"></script>
+</head>
+<body align="center">
+
+     <script>
+        $(document).ready(function(){
+            $('#btn1').click(function(){
+                $('#img1').hide(3200);
+            })
+
+            $('#btn2').click(function(){
+                $('#img1').show(3200);
+            })
+
+            $('#btn3').click(function(){
+                $('#img1').toggle(3200);
+            })
+            
+        })
+     </script>
+
+    <img src="tree.gif  " alt="error" id="img1">
+    <br><br>
+
+    <button id="btn1">Hide</button>
+    <button id="btn2">Show</button>
+    <button id="btn3">Toggle</button>
+    
+
+    
+</body>
+</html>

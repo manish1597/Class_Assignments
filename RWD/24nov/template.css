@@ -1,0 +1,416 @@
+
+* {
+    box-sizing: border-box;
+}
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: black;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+nav img {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+nav a {
+    flex: 1;
+    font-size: 20px; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+#div1 {
+    position: relative;
+   
+    height: 850px;
+    width: 100%;
+    overflow: hidden; 
+}
+
+#div1 img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    position: absolute;
+    z-index: -1;
+}
+
+#div1i {
+    position: absolute;
+    z-index: 1;
+    
+    height: 70%;
+    width: 100%;
+    padding-top: 278px;
+    /* top: 18px; 
+    left: 41%;  */
+}
+
+#h1i {
+    font-size: 85px;
+    color: #5C0822; 
+
+    padding-top: 92px;
+    padding-left: 41%;
+    padding: 0; 
+    margin: 0; 
+}
+
+#h2i {
+    font-size: 85px;
+    color: #8B0000;
+    padding-top: 0; 
+    padding-left: 41%;
+    padding: 0; 
+    margin: 0;
+
+}
+#h3i{
+    padding-left: 53%;
+    color:#5C0822;
+}
+
+#h1i,#h2i{
+    /* margin-top: 5%; */
+    padding-left: 37%;
+}
+
+#div2 {
+    border: 2px solid black;
+    height: 642px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    background-color: #000000;
+}
+
+#div2i {
+    border: 2px solid black;
+    height: 550px;
+    width: 550px;
+    margin-left: 14%;
+    margin-top: 3.5%;
+    background-color: #000000;
+}
+
+#div2i h3{
+    margin-top: 19%;
+    margin-left: 3.5%;
+}
+
+#div2h1{
+    margin-left: 4%;
+}
+
+#div3i {
+    border: 2px solid black;
+    height: 550px;
+    width: 550px;
+    margin-right: 7%;
+    margin-top: 3.5%;
+}
+
+#div3i img {
+    height: 550px;
+    width: 550px;
+
+}
+
+
+
+
+#customDiv {
+    border: 2px solid black;
+    height: 642px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    background-color: #000000;
+   
+}
+
+
+#customDiv2i {
+    border: 2px solid black;
+    height: 550px;
+    width: 550px;
+    margin-left: 7%;
+    margin-top: 3.5%;
+}
+
+#customDiv2i img {
+    height: 100%;
+    width: 100%;
+}
+
+#customDiv1 {
+    border: 2px solid black;
+    height: 550px;
+    width: 38%;
+    background-color: #000000;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 3.5%;
+    margin-right: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#customDiv1 h3 {
+    color: #9E9E9E;
+}
+
+#customDiv1h1 {
+    display: inline;
+    color: white;
+}
+
+#customDiv1 h1 {
+    display: inline;
+    color: red;
+}
+
+#customDiv1 h2 {
+    font-weight: normal;
+    color: white;
+}
+
+#customDiv1 p {
+    font-size: 20px;
+    color: white;
+}
+
+
+
+
+#div3 {
+
+    border: 2px solid  #000000; 
+    width: 100%;
+    display: flex;
+    background-color: #000000;
+}
+
+#div3one,
+#div3two,
+#div3three {
+    margin-top: 20;
+    border-top: none; 
+    border-left: none; 
+    border-bottom: none; 
+    border-right: 2px solid red; 
+    height: 80%;
+    flex: 1; 
+    margin-top: 50px; 
+}
+
+#team{
+    background-color: #000000;
+    border: 2px solid ; 
+    height: 700px;
+    width: 100%;
+    display: flex;
+    background-color: #000000;
+    display: flex;
+}
+
+#team1{
+    border: 2px solid red;
+    height: 290px;
+    width: 290px;
+    margin-left: -15px;
+    margin-top: 267px;
+    box-sizing: border-box; 
+}
+
+#team1 img{
+    height: 100%; 
+    width: 100%; 
+    box-sizing: border-box;
+
+}
+
+#team2{
+    border: 2px solid red;
+    height: 290px;
+    width: 290px;
+    margin-left: 60px;
+    margin-top: 267px;
+    box-sizing: border-box; 
+
+}
+
+#team2 img{
+    height: 100%; 
+    width: 100%; 
+    box-sizing: border-box;
+
+}
+
+
+#team3{
+    border: 2px solid red;
+    height: 290px;
+    width: 290px;
+    margin-left: 60px;
+    margin-top: 267px;
+    box-sizing: border-box; 
+
+}
+
+#team3 img{
+    height: 100%; 
+    width: 100%; 
+    box-sizing: border-box;
+
+}
+
+
+#team4{
+    border: 2px solid red;
+    height: 290px;
+    width: 290px;
+    margin-left: 60px;
+    margin-top: 267px;
+    box-sizing: border-box; 
+
+}
+
+
+#team4 img{
+    height: 100%; 
+    width: 100%; 
+    box-sizing: border-box;
+
+}
+
+
+#newCustomDiv {
+    border: 2px solid black;
+    height: 642px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #000000;
+}
+
+#newCustomDiv2i {
+    border: 2px solid black;
+    height: 550px;
+    width: 550px;
+    margin-left: 7%;
+    margin-top: 3.5%;
+}
+
+#newCustomDiv2i img {
+    height: 100%;
+    width: 100%;
+}
+
+#newCustomDiv1 {
+    border: 2px solid black;
+    height: 550px;
+    width: 38%;
+    background-color: #000000;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 3.5%;
+    margin-right: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#newCustomDiv1 h3 {
+    color: #9E9E9E;
+}
+
+#newCustomDiv1h1 {
+    display: inline;
+    color: white;
+}
+
+#newCustomDiv1 h1 {
+    display: inline;
+    color: red;
+}
+
+#newCustomDiv1 h2 {
+    font-weight: normal;
+    color: white;
+}
+
+#newCustomDiv1 p {
+    font-size: 20px;
+    color: white;
+}
+
+
+
+
+#price {
+    border: 2px solid #000000;
+    height: 642px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #000000;
+    color: white;
+    padding: 20px;
+  }
+
+  #price1, #price2, #price3 {
+    flex: 1;
+    text-align: center;
+  }
+
+  .subscription-box {
+    border: 2px solid white;
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .buy-now-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  
+  #price1 h2, #price2 h2, #price3 h2 {
+    font-size: 20px;
+    color: red;
+  }
+
+
+
+  #footer {
+    background-color: #000000;
+    color: red;
+    text-align: right;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 29px; 
+    margin-top: 50px; 
+}

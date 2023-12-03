@@ -1,0 +1,1562 @@
+--Assignment no 1
+
+--1. list the employees who are belonging to department number 20
+
+select * from employees
+where department_id in (90)
+
+--2.list the last name and the salary of the employees ,whose salary is more than 3000
+
+select last_name,salary
+from employees
+where salary>3000
+
+--3.list the employee id and last name  of the employees whose job is sales representive
+
+select last_name,employee_id,job_id
+from employees
+where job_id='SA_REP'
+
+--4.list all employees  name and hire date who are hired before 1990 
+
+select first_name,hire_date
+from employees
+where hire_date<'01-JAN-90'
+
+--                                        ASSIGNMENT NO.2
+
+--1.List the last name and salary of employees whose salary in between 2000 to 4000
+
+select last_name,salary 
+from employees
+where salary Between 2000 and 4000
+
+--2.list last name from employees  who have joined after 30 june 2001 and before december 2001
+
+select last_name ,hire_date
+from employees
+WHERE hire_date > '30-JUN-01' AND hire_date < '31-DEC-01'
+
+--3.list the first name of the employees whose employee number are 109,101,119,114,118 
+
+select first_name,employee_id
+from employees
+where employee_id in(109,101,119,114,118)
+
+--4.List the employees who are not belong to department numbers 30 and 50
+
+select first_name,last_name,department_id
+from employees
+where department_id  not in (30,50)
+
+
+--                                   ASSIGNMENT N0.3
+
+
+
+--1.List the employees whose first name is start with 'S'
+
+select first_name
+from employees
+WHERE first_name LIKE 'S%'
+
+--2.List the employees having third character in last name as 'R' ??????????
+
+select last_name
+from employees
+where last_name LIKE '_%r%_'
+
+--3.List the first name and last name of the employees whose first name have exactly five characters
+
+select first_name,last_name
+from employees 
+where first_name LIKE '_____'
+
+--4.List the employees name who do not get any commision 
+
+select *
+from employees 
+where commission_pct is null
+
+
+
+--                                         ASSIGNMENT N0.4
+
+--1.List the employees details in the ascending order of their annual salary 
+
+select first_name,last_name,salary,salary*12 as "Annual income"
+from employees
+order by 'Annual income'  
+
+--2. List the details of employees in department wise ascending order and in decending order of salary
+
+
+select first_name,last_name,department_id ,salary
+from employees
+order by salary asc
+
+select first_name,last_name,department_id ,salary
+from employees
+order by department_id desc
+
+
+--                                       ASSIGNMENT N0.5
+
+--1.list the employees with desiganation as "SA_REP" whose salary greater than 8000
+
+SELECT first_name, job_id, salary
+FROM employees
+WHERE job_id = 'SA_REP' AND salary > 8000;
+
+--2.List the Employees whose salary is in the range 3000 and 5000
+SELECT first_name,last_name,salary
+FROM employees
+WHERE salary BETWEEN 3000 AND 5000
+
+--3.List the employees with designation'SA_REP' as well as'SA_MAN'
+
+select first_name,last_name,job_id
+FROM employees
+WHERE job_id IN ('SA_REP', 'SA_MAN');
+
+
+--                           7-oct-23 Quaries
+
+select employee_id,first_name,last_name
+from employees
+where employee_id=&empid
+
+select employee_id,first_name,job_id
+from employees
+where job_id=&job_id
+
+
+select employee_id,first_name,&col
+from employees
+where &condition
+order by &ordcol
+
+
+select employee_id,first_name,&&col
+from employees
+
+
+
+
+--                                  ASSIGNMENT 9/10/23
+                                  
+                                  
+--1.Diplay the first and last name of employee with intial letter in capital and also display
+--the job in lower letter
+
+select initcap(first_name),initcap(last_name),lower(job_id)
+from employees
+
+--2.Display the last name of the employees concatenated with designation of the employees .the output 
+--should be something like King-AD_PRES
+
+
+SELECT concat(concat(last_name,'-'),(job_id)) 
+FROM employees
+
+--3. Display the employees whose salary greater than 4 digits
+
+SELECT *
+FROM employees
+WHERE salary > 9999;
+
+--4Display the name and salary of the employees with salary left justified and padded with *
+
+select first_name,lpad(salary,10,'*')
+from employees
+
+--5.display the last name of the employees and length of the last name
+
+select last_name,length(last_name) 
+from employees
+
+
+--                                      9-OCT-23 Quaries
+
+
+--                                     NUMERTIC FUNCTION
+
+
+select round(92.925,2) from dual
+
+select trunc(92.928,2) from dual
+
+select round(92.52,0) from dual
+
+select trunc(92.926,0) from dual
+
+select ceil(2.82351) from dual
+
+select floor(2.91) from dual
+
+--show even number employee id
+
+select employee_id,last_name
+from employees
+where mod(employee_id,2)=0
+
+
+--                                       9-OCT_23 ASSIGNMENT
+
+--1.calculate remaider of salary after it is divided by 5000 for all employees whose 
+--job title is sales representative
+
+select first_name,last_name,salary,mod(salary,5000)
+from employees
+where job_id='SA_REP'
+
+--2.find 7 raise to power 4
+
+select 7*7*7*7 as "seven power"
+from dual
+
+
+--3.Display the Annual salary of all employees including commission for all employee who are earning commision 
+select first_name,last_name,salary,nvl(commission_pct,0),
+(12*salary)+(12*salary+nvl(commission_pct,0)) as "Annual Salary"
+from employees
+
+
+ 
+--                                       9-10-23 Queries
+--                                       DATE FUNCTION
+
+
+select sysdate from dual
+
+select sessiontimezone, sysdate from dual
+
+select current_date from dual
+
+select sessiontimezone, current_date from dual
+
+select sessiontimezone, current_timestamp from dual
+
+
+
+
+
+                                  
+--                         ASSIGNMENT ARITHMATICS WITH DATES
+
+--1.Add or substract number from date for resultant date value
+
+select sysdate-01-01-2023 from dual
+
+select last_name,(sysdate-hire_date)/7
+from employees 
+where department_id=90;
+
+--2.substract two dates to find number of the number of days between those days
+
+SELECT ROUND((SYSDATE - hire_date), 0) AS days_between
+FROM employees;
+
+
+
+3.Add hours to a date by dividing the number of hours by 24
+ 
+SELECT SYSDATE + (1/24 * 3),sessiontimezone, current_timestamp AS Result FROM DUAL;
+
+
+
+                            QURIES DATE MANIPULATION FUNCTION
+                            
+select months_between(sysdate,'01-JAN-2001')  from dual  
+
+select add_months(sysdate,1) from dual
+
+select next_day(sysdate,'Monday') from dual
+
+select last_day(sysdate) from dual
+
+
+--                                    ROUND and TRUNC with month and year
+
+
+select round(sysdate,'Month') from dual
+
+select trunc(sysdate,'Month') from dual
+
+
+select round(sysdate,'Year') from dual
+
+select trunc(sysdate,'Year') from dual
+
+
+
+
+--                                         ASSIGNMENT
+                                         
+--1.How many years 'Bell' is working with organization  
+
+select first_name,last_name,(sysdate-hire_date)/365
+
+from employees
+
+where last_name='Bell'
+
+--2.List the employee with date of joning and the number of years He/she working in the organizaion
+
+select first_name,last_name,hire_date,(sysdate-hire_date)/365
+
+from employees
+
+--3.Display the how many months 'Whalen' is working
+
+select first_name,last_name,hire_date,(sysdate-hire_date)/30
+from employees
+where last_name='Whalen'
+
+
+
+
+--                                        10-10-23
+
+--       Data conversion to_char function with dates
+
+select to_char(sysdate,'fmdd-mm-yyyy') from dual
+
+select to_char(sysdate,'fmdd-month-yyyy') from dual
+
+select to_char(sysdate,'dd-yyyy-HH24:MI:SS:AM') from dual
+
+select to_char(sysdate,'dd" of "month') from dual
+
+select to_char(sysdate,'ddspth" of " month') as "Date" from dual
+
+
+--       Data conversion to_char function with Numbers
+
+select to_char(salary,'$99,999') from employees
+
+select to_char(salary ,'L99,999') from employees
+where last_name='Ernst'
+
+
+
+
+--                      Using the to_number & to_date Function
+
+--to find employees hired before 1990 use the RR date format which produces the same results wheather the command
+--is RUN in 1999 or NOW
+
+select last_name,to_char(hire_date,'DD-MON-yyyy')
+from employees
+where hire_date<to_date('01-Jan-90','DD-MON-RR')
+
+
+
+--                                       GENERAL FUNCTIONS
+
+--NUL
+select last_name,salary,nvl(commission_pct,0),
+(12*salary)+(12*salary+nvl(commission_pct,0)) as "Annual Salary"
+from employees
+
+--nvl(commission_pct,0) 
+--nvl(hire_date,'01-JAN-97') 
+--nvl(job_id,'No job yet') 
+
+
+--NVL2
+
+select last_name,salary,commission_pct,
+nvl2(commission_pct,'SAL+COMM','SAL') as income
+from employees
+where department_id in(50,80)
+
+--NULLIF
+
+select first_name,length(first_name) as exp1,
+last_name,length(last_name) as exp2,
+nullif(length(first_name),length(last_name)) as Result
+
+From employees 
+
+
+--COALESCE
+
+select last_name,salary,commission_pct,
+coalesce((salary+(commission_pct*salary)),salary+2000)as "New salary"
+from employees
+
+
+
+--                              ASSIGNMENT 10-10-23
+
+--1.List the commission received by all employees
+
+select first_name,last_name,salary,nvl(commission_pct,0),
+(12*salary)+(12*salary+nvl(commission_pct,0)) as "Annual Salary"
+from employees
+
+--2.Display name,total salary and annual salary to be displayed including commission as well as Annual salary
+--should be calculated including commission
+
+select first_name,last_name,salary,nvl(commission_pct,0),salary*12 as "Annual commissio",
+(12*salary)+(12*salary+nvl(commission_pct,0)) as "Annual Salary"
+from employees
+
+
+
+--                                    11-10-23
+
+--                                CONDITION FUNCTION
+
+--                case expression
+
+select last_name,salary,job_id,
+case job_id when 'IT_PROG' then salary*1.10
+when 'SA_REP' then salary*1.20
+when 'ST_CLERK' then salary*1.15
+else salary 
+end "Revised salary"
+from employees
+ 
+--                      SWITCH CASE
+
+
+select last_name,salary,
+case when salary<5000 then 'LOW'
+when salary<10000 then 'MEDIUM'
+when salary<20000 then 'GOOD'
+else 'EXPRESSION'           
+end qualified_salary
+from employees
+
+--                         DECODE FUNCTION
+
+SELECT first_name, last_name, job_id, salary,
+    DECODE(job_id, 'IT_PROG', salary * 1.20,
+                  'SA_REP', salary * 1.25,
+                  'ST_CLERK', salary * 1.10,
+                  salary) AS Revised_salary
+FROM employees;
+      
+                       
+--                                          ASSIGNMENT
+
+select last_name,salary,job_id,
+case job_id when 'MK_MAN' then 'MARKETING MANAGER'
+when 'PU_MAN' then 'PURCHASING MANAGER' 
+when 'HR_REP' then 'HR REPRESENTATIVE'
+else 'SAME AS JOB'
+end JOB_DESCRIPTION
+from employees
+
+
+--                                      GROUP FUNCTION
+
+
+select max(salary) from employees
+
+select min(salary) from employees
+
+select avg(salary) from employees
+
+select sum(salary) from employees
+
+select min(hire_date),max(hire_date) from employees
+
+select count(*) from employees
+
+
+select count(*) from employees
+where department_id=50
+
+select count(commission_pct) from employees
+where department_id=50
+
+select avg(commission_pct)
+from employees
+
+select avg(nvl(commission_pct,0))
+from employees
+
+
+
+
+
+--                                       12-10-23
+
+
+--GROUP BY
+
+select department_id,avg(salary)
+from employees
+group by department_id
+order by department_id
+
+select avg(salary)
+from employees
+group by department_id
+
+
+--GROUP by  two or more column
+
+select department_id,job_id,sum(salary)
+from employees
+group by department_id,job_id
+order by department_id
+
+--HAVING CLAUSE
+
+select department_id,max(salary)
+from employees
+group by department_id
+having max(salary)>10000
+order by max(salary)
+
+
+select job_id,sum(salary) payroll
+from employees
+where job_id not like 'SA_REP'
+group by job_id
+having sum(salary)>13000
+order by sum(salary)
+
+
+--NESTING GROUP FUNCTION
+
+select max(avg(salary))
+from employees
+group by department_id
+
+
+
+--                       ASSIGNMENT NO.1
+
+--1.what is last hiring date of each department
+
+select max(hire_date)
+from employees
+order by hire_date
+
+--2.Display the average salary and  number of employees working
+--int department number 20
+
+select count(department_id),avg(salary)
+from employees
+where department_id=20
+--order by  department_id
+
+
+--3.Display the number of empoyees getting commission
+
+select count(nvl(commission_pct,0))
+from employees
+
+--4.Display department wise ,job wise maximum salary of employees
+
+select department_id, job_id, MAX(salary) AS max_salary
+from Employees
+group by department_id, job_id
+
+
+--                                                  ASSIGNMRNT N0.2
+
+--1.DISPLAY NUMBER OF EMPLOYEES DEPARTMENT WISE  WITH DEPARTMENT HAVING COUNT OF EMPLOYEES GREATER THAN 10
+
+SELECT department_id, COUNT(*) AS employee_count
+FROM Employees
+GROUP BY department_id
+HAVING COUNT(*) > 10
+
+--2.Display Maximum count of employees in any department
+
+select max(count(employee_id))
+from employees
+group by department_id
+
+
+
+
+--                                              13-10-23
+
+
+
+--NATURAL JOIN
+
+
+select employee_id,first_name,job_id,job_title
+from employees
+natural join jobs
+
+
+
+
+--USING CLAUSE
+
+select employee_id,first_name,department_id,department_name
+from employees join departments 
+using(department_id)
+
+
+--QUALIFY COLUMN NAME
+
+select l.city,d.department_name
+from locations l join departments d
+using(location_id)
+
+
+--ON CLAUSE
+
+select e.employee_id,e.first_name,e.department_id,d.department_id,d.location_id
+from employees e join departments d
+on(e.department_id=d.department_id)
+
+
+--THREE WAY JOIN
+
+
+select employee_id,city,department_name
+from employees e join departments d
+on(e.department_id=d.department_id)
+join locations l
+on(d.location_id=l.location_id)
+
+--USING ADDITON CONDITION TO JOIN BY WHERE/ AND
+
+select e.employee_id,e.last_name,e.department_id,d.department_id,d.location_id
+from employees e join departments d
+on(e.department_id=d.department_id)
+AND e.manager_id=149
+
+select e.employee_id,e.last_name,e.department_id,d.department_id,d.location_id
+from employees e join departments d
+on(e.department_id=d.department_id)
+WHERE e.manager_id=149
+
+--SELF JOIN
+
+select worker.manager_id,worker.employee_id,worker.last_name emp,manager.last_name mgr
+from employees worker join employees manager
+on(worker.manager_id=manager.employee_id)
+
+--NON_EQUI_JOINS
+
+select e.last_name,e.salary,j.grade_level
+from employees e join job_grades j
+on e.salary between j.lowest_sal and j.highest_sal
+
+--LEFT OUTER JOIN
+
+select e.employee_id,e.last_name,d.department_name
+from employees e left outer join departments d
+on(e.department_id=d.department_id)
+
+--RIGHT OUTER JOIN 
+
+select e.employee_id,e.last_name,d.department_name
+from employees e right outer join departments d
+on(e.department_id=d.department_id)
+
+--FULL OUTER JOIN
+
+select e.employee_id,e.last_name,d.department_name
+from employees e full outer join departments d
+on(e.department_id=d.department_id)
+
+--CARTESIAN PRODUCT 
+ 
+select last_name,department_name
+from employees cross join departments
+
+
+
+--                                           ASSIGNMENT ON JOINS
+
+--1.find out the difference between the average salary earned by a person in department number 10 
+--and the average salary earned by a person in department number 30
+
+-- Calculate the average salary for department 10
+SELECT AVG(salary) AS avg_salary_dept_10
+FROM employees
+WHERE department_id = 10;
+
+-- Calculate the average salary for department 30
+SELECT AVG(salary) AS avg_salary_dept_30
+FROM employees 
+WHERE department_id = 30;
+
+-- Calculate the difference between the average salaries of departments 10 and 30
+
+SELECT AVG(e1.salary) - AVG(e2.salary) AS salary_difference
+FROM employees e1
+JOIN employees e2 ON e1.department_id = 10 AND e2.department_id = 30;
+
+
+--2.List employee and his manager's details where the employee's salary is greter than his manager's salary
+
+SELECT e.employee_id emp_id, e.first_name emp_first_name, e.last_name emp_last_name,
+       e.salary emp_salary,
+       m.employee_id mgr_id, m.first_name mgr_first_name, m.last_name mgr_last_name,
+       m.salary mgr_salary
+FROM employees e
+JOIN employees m ON e.manager_id = m.employee_id
+WHERE e.salary > m.salary;
+  
+
+--                    16-10-23
+
+
+--SUBQUERY
+
+select last_name,hire_date
+from employees
+where hire_date>(select hire_date from employees
+                 where last_name='Davies')
+
+
+
+--QUARIES OF TWO CONDITION
+
+select last_name,job_id,salary
+from employees
+where job_id=(select job_id from employees
+              where last_name='Greene')
+and salary>(select salary from employees
+            where last_name='Greene')
+
+
+--GROUP FUNCTION WITH SUBQUERY
+
+select last_name,job_id,salary
+from employees
+where salary=(select min(salary) from employees)
+
+--HAVING CLAUSE SUBQUERY
+
+select department_id,min(salary)
+from employees
+group by department_id
+having min(salary)>(select min(salary) from employees       
+                    where department_id='30')
+
+
+--    MULTIPLE ROW SUBQUERY
+
+--ANY
+
+select employee_id,last_name,job_id,salary
+from employees
+where salary<any(select salary from employees
+                    where job_id='IT_PROG')
+and job_id<>'IT_PROG'
+
+
+--ALL
+
+select employee_id,last_name,job_id,salary
+from employees
+where salary<all(select salary from employees
+                    where job_id='IT_PROG')
+and job_id<>'IT_PROG'
+
+
+--NULL VALUES IN SUBQUERY
+
+select emp.last_name
+from employees emp
+where emp.employee_id Not in (select mgr.manager_id
+                                from employees mgr)
+
+
+--MULTIPLE COLUMN SUBQURIES
+
+select first_name,salary,department_id
+from employees where(salary,department_id) in
+                (select min(salary),department_id
+                from employees
+                group by department_id)
+                
+                
+                
+--                                                           ASSIGNMENT ON SUBQUARIES
+
+--1.List the employees belonging to the department of miller                
+
+
+SELECT e.last_name, e.department_id
+FROM employees e
+WHERE e.department_id = (SELECT department_id FROM employees WHERE last_name = 'Mallin')
+
+
+
+--2.List the employees who have salary greater than that of am employee with last name 'Taylor'
+
+SELECT e.last_name, e.salary
+FROM employees e
+WHERE e.salary > all(SELECT salary FROM employees WHERE last_name = 'Taylor')
+
+--3.List the employees who work in finance department
+
+
+select *
+FROM employees
+WHERE department_id=100
+
+--4.Display the departments having salary which is equal to the average salary of department number 50
+
+
+--5.Dipslay names of employees who are working in "Sales" or "Accounting" department
+
+SELECT first_name, last_name
+select *
+FROM employees
+WHERE department_id IN (100,80);
+
+--6.Display the last name and the salary of employees who are not 'SA_REP' and whose salary is less than any 'SA_REP'
+
+SELECT last_name, salary
+FROM employees
+WHERE job_id != 'SA_REP'
+AND salary < ANY (SELECT salary FROM employees WHERE job_id = 'SA_REP')
+
+
+--                                                    17-10-23
+
+--CORELATED SUBQUERY
+
+select last_name,department_id,salary
+from employees outer
+where salary>(select avg(salary) from employees inner 
+where inner.department_id=outer.department_id)
+
+--EXIST OPERATOR
+
+select last_name,job_id,salary,department_id
+from employees outer
+where exists(select null from employees 
+                where manager_id=outer.manager_id)
+                
+--Not-Exist              
+
+select department_id,department_name 
+from departments outer
+where not exists(select null from employees
+where department_id=outer.department_id)
+
+--                                                  SET OPERATOR
+
+--UNION
+
+select job_id
+from employees
+union
+select job_id from job_history
+
+--UNIION ALL
+
+select job_id,department_id
+from employees
+union all
+select job_id,department_id 
+from job_history
+
+
+--INTERSECT OPERATOR
+
+select department_id,job_id
+from employees
+intersect 
+select department_id,job_id
+from job_history
+
+--MINUS OPERATOR
+
+select job_id,employee_id
+from employees 
+where department_id=80
+minus
+select job_id,employee_id
+from job_history
+where department_id=90
+
+
+
+
+--MATCHING SELECT STATEMENT
+
+select location_id,department_name "Departments",to_char(null) "Warehouse Location"
+from departments
+union 
+select location_id,to_char(null) "Departments" ,state_province
+from locations
+
+select first_name "Name",job_id,to_date(hire_date) "Hire_date"
+from employees
+union
+select to_char(null) "Name",job_id,to_date(null) "Hire_date"
+from job_history
+
+ 
+--                                            ASSIGNMENT  ON SET OPERATOR
+
+--1.Display the current and previous job details of all employees.Display each employee only once
+
+-- Query for current job
+SELECT e.employee_id, e.first_name, e.last_name, e.job_id AS job
+FROM employees e
+UNION
+-- Query for previous job
+SELECT jh.employee_id, e.first_name, e.last_name, jh.job_id AS job
+FROM job_history jh
+JOIN employees e ON jh.employee_id = e.employee_id
+WHERE (jh.employee_id, jh.start_date) IN (
+    SELECT employee_id, MAX(start_date)
+    FROM job_history
+    GROUP BY employee_id
+)
+ORDER BY employee_id
+
+--2.Display employee_ids and job_ids of employees who currently have a job title that they held before beginning 
+--their tenure with the company
+
+SELECT jh.employee_id, jh.job_id
+FROM job_history jh
+JOIN employees e ON jh.employee_id = e.employee_id
+WHERE (jh.employee_id, jh.job_id) IN (
+    SELECT employee_id, job_id
+    FROM job_history
+    WHERE start_date = (
+        SELECT MIN(start_date)
+        FROM job_history
+        WHERE employee_id = jh.employee_id
+    )
+)
+ORDER BY jh.employee_id
+
+
+--3.Display the employee ids of those employees who have not changed their jobs even once
+
+SELECT e.employee_id
+FROM employees e
+WHERE e.employee_id NOT IN (
+    SELECT DISTINCT employee_id
+    FROM job_history
+)
+
+SELECT employee_id
+FROM employees
+MINUS
+SELECT DISTINCT employee_id
+FROM job_history
+
+
+
+
+--                                        18-10-23
+--CREATING THE TABLE
+
+create table dept
+(
+  deptno number(5),
+  deptname varchar2(15),
+  loc varchar(10)
+);
+
+
+--                            CONTRAINTS
+
+-- COLUMN LEVEL CONSTRAINT
+ 
+create table employ1
+(
+employe_id Number(6) constraint emp_emp_id_p PRIMARY KEY,
+firstt_name varchar2(20)
+);
+
+-- TABLE LEVEL CONSTRAINT
+
+create table employy
+(
+employee_id Number(6),
+first_name varchar2(20),
+job_id varchar2(10) not null,
+constraint emp_pk PRIMARY KEY (employee_id)
+);
+
+
+--UNIQUE
+
+create table employeees
+(
+employee_id Number(6),
+last_name varchar2(25) not null,
+email varchar2(25),
+salary number(8,2),
+commission_pct number(2,2),
+hire_date Date not null,
+constraint emp_email unique(email)
+);
+
+--check
+
+create table salariess
+(
+salary Number(11)
+constraint emp_salary check (salary>0)
+);
+
+
+--FOREIGN KEY
+
+create table employee22
+(
+employee_id Number(6),
+last_name varchar2(25) not null,
+email varchar2(25),
+department_id Number(4),
+constraint emp_dep_fk foreign key (department_id)
+references employy(employee_id)
+)
+
+                                            
+--                                        19-10-23
+
+--CREATING TABLE USING SUBQUERY
+
+create table dep80
+as select employee_id,last_name,12*salary Annual,hire_date
+from employees
+where department_id=80
+
+desc dep80
+
+--ALTER TABLE
+
+--ADD
+
+alter table dep80
+add(first_name varchar(20))
+
+desc dep80
+
+--MODIFY
+
+alter table dep80
+modify (first_name varchar2(30))
+
+desc dep80
+
+--DROP
+
+alter table dep80
+drop(hire_date)
+
+desc dep80
+
+--READ ONLY / WRITE ONLY
+
+ALTER TABLE dep80 READ ONLY;
+
+
+--DROP ENTIRE TABLE
+desc employee22
+drop table employee22
+
+
+--                              DATA DICTIONARY
+
+--DESCRIBE DICTIONARY
+
+DESC Dictionary
+
+select * 
+from dictionary
+where table_name='user_objects'
+
+--TABLE INFORMATION
+
+Desc user_tables
+
+--COLUMN INFORMATION
+
+desc user_tab_columns
+
+--CONSTRAINT INFORMATION
+
+desc constraint
+
+--                                        DML
+
+--INSERT TABLE
+
+select * from departments
+
+insert into departments(department_id,department_name,manager_id,location_id)
+values (69,'HR',null,null)
+
+
+--                                 ASSIGNMENT ON CREATING SALESPEOPLE,SALES and ORDER TABLE
+
+--CREATING SALESPEOPLE TABLE
+
+create table salespeople
+(
+snum number(5) constraint n_pk primary key,
+sName varchar2(20) not null,
+city varchar2(20),
+comm number(5)
+)
+
+desc salespeople
+
+
+
+insert into salespeople
+values (01,'john','Lisbon',11),
+
+
+insert into salespeople
+values (02, 'Alice', 'New York', 11)
+
+insert into salespeople
+values (03, 'Bob', 'Los Angeles', 12)
+
+insert into salespeople
+values (04, 'Sara', 'Chicago', 11)
+
+insert into salespeople
+values (05, 'Mike', 'San Francisco', 13)
+
+insert into salespeople
+values  (06, 'Emma', 'London', 12)
+
+insert into salespeople
+values (07, 'James', 'Toronto', 14)
+
+insert into salespeople
+values (08, 'Lucy', 'Paris', 12)
+
+insert into salespeople
+values   (09, 'David', 'Berlin', 14)
+
+insert into salespeople
+values (10, 'Sophia', 'Sydney', 13)
+    
+
+select * from salespeople
+
+
+--CREATING CUSTOMER TABLE
+
+
+create table customer
+(
+cnum number(5) constraint n_pkkk primary key,
+cName varchar2(20) not null,
+city varchar2(20),
+rating number(5,2)
+)
+
+desc customer
+
+insert into customer 
+values (01,'Tony','Sydney',4.4)
+
+select * from customer
+
+insert into customer 
+values (12, 'Benjamin', 'Houston', 4.2)
+
+insert into customer 
+values (13, 'Chloe', 'Miami', 4.9)
+
+insert into customer 
+values (14, 'David', 'Seattle', 4.5)
+
+insert into customer 
+values (15, 'Ella', 'Atlanta', 4.3)
+
+insert into customer 
+values  (16, 'Finn', 'Denver', 4.8)
+
+insert into customer 
+values    (17, 'Grace', 'Phoenix', 4.7)
+
+insert into customer 
+values (18, 'Henry', 'Dallas', 4.4)
+
+insert into customer 
+values (19, 'Isabella', 'Philadelphia', 4.2)
+
+insert into customer 
+values (20, 'Jack', 'San Diego', 4.6)
+
+
+select * from customer   
+    
+    
+--CREATING ORDERS  
+
+CREATE TABLE Orders
+(
+    oNum NUMBER(5) CONSTRAINT onum_pk PRIMARY KEY,
+    Amount NUMBER(5),
+    oDate DATE DEFAULT SYSDATE,
+    cnum NUMBER(5),
+    CONSTRAINT cc_num FOREIGN KEY(cnum) REFERENCES customer(cnum),
+    snum NUMBER(5),
+    CONSTRAINT ss_num FOREIGN KEY(snum) REFERENCES salespeople(snum)
+);
+
+desc Orders
+
+
+insert into Orders 
+values (111, 4800,'07-OCT-23',1,1)
+
+insert into Orders 
+values (112, 5400,'08-OCT-23',12,2)
+
+insert into Orders 
+values (113, 6500,'09-OCT-23',13,3)
+
+insert into Orders 
+values (114, 8700,'09-OCT-23',14,4)
+
+insert into Orders 
+values (115, 9400,'10-OCT-23',16,5)
+
+insert into Orders 
+values (116, 7899,'11-OCT-23',17,6)
+
+insert into Orders 
+values (117, 3500,'12-OCT-23',18,7)
+
+insert into Orders 
+values (118, 8700,'13-OCT-23',19,8)
+
+insert into Orders 
+values (119, 5900,'14-OCT-23',20,9)
+
+insert into Orders 
+values (120, 7890,'15-OCT-23',null,10)
+
+
+
+ 
+select * from salespeople
+select * from customer
+select * from orders
+    
+
+--                        20-10-23
+
+
+--                        UPDATE
+
+--CREATING DUMMY RECORDS
+
+create table dsalespeople
+(
+snum number(5) constraint nnnn_pk primary key,
+sName varchar2(20) not null,
+city varchar2(20),
+comm number(5)
+)
+
+desc dsalespeople
+
+
+
+insert into dsalespeople
+values (01,'john','Lisbon',11)
+
+
+insert into dsalespeople
+values (02, 'Alice', 'New York', 11)
+
+insert into dsalespeople
+values (03, 'Bob', 'Los Angeles', 12)
+
+insert into dsalespeople
+values (04, 'Sara', 'Chicago', 11)
+
+insert into dsalespeople
+values (05, 'Mike', 'San Francisco', 13)
+
+insert into dsalespeople
+values  (06, 'Emma', 'London', 12)
+
+insert into dsalespeople
+values (07, 'James', 'Toronto', 14)
+
+insert into dsalespeople
+values (08, 'Lucy', 'Paris', 12)
+
+insert into dsalespeople
+values   (09, 'David', 'Berlin', 14)
+
+insert into dsalespeople
+values (10, 'Sophia', 'Sydney', 13)
+    
+
+select * from dsalespeople
+
+
+--CREATING Dummy CUSTOMER TABLE
+
+
+create table dcustomer
+(
+cnum number(5) constraint nmmnn_pkkk primary key,
+cName varchar2(20) not null,
+city varchar2(20),
+rating number(5,2)
+)
+
+desc dcustomer
+
+insert into dcustomer 
+values (01,'Tony','Sydney',4.4)
+
+select * from dcustomer
+
+insert into dcustomer 
+values (12, 'Benjamin', 'Houston', 4.2)
+
+insert into dcustomer 
+values (13, 'Chloe', 'Miami', 4.9)
+
+insert into dcustomer 
+values (14, 'David', 'Seattle', 4.5)
+
+insert into dcustomer 
+values (15, 'Ella', 'Atlanta', 4.3)
+
+insert into dcustomer 
+values  (16, 'Finn', 'Denver', 4.8)
+
+insert into dcustomer 
+values    (17, 'Grace', 'Phoenix', 4.7)
+
+insert into dcustomer 
+values (18, 'Henry', 'Dallas', 4.4)
+
+insert into dcustomer 
+values (19, 'Isabella', 'Philadelphia', 4.2)
+
+insert into dcustomer 
+values (20, 'Jack', 'San Diego', 4.6)
+
+
+select * from dcustomer   
+    
+    
+--CREATING dummyORDERS  
+
+CREATE TABLE dOrders
+(
+    oNum NUMBER(5) CONSTRAINT hfrunum_pk PRIMARY KEY,
+    Amount NUMBER(5),
+    oDate DATE DEFAULT SYSDATE,
+    cnum NUMBER(5),
+    CONSTRAINT hbsjcc_num FOREIGN KEY(cnum) REFERENCES dcustomer(cnum),
+    snum NUMBER(5),
+    CONSTRAINT safss_num FOREIGN KEY(snum) REFERENCES dsalespeople(snum)
+);
+
+desc dOrders
+
+
+insert into dOrders 
+values (111, 4800,'07-OCT-23',1,1)
+
+insert into dOrders 
+values (112, 5400,'08-OCT-23',12,2)
+
+insert into dOrders 
+values (113, 6500,'09-OCT-23',13,3)
+
+insert into dOrders 
+values (114, 8700,'09-OCT-23',14,4)
+
+insert into dOrders 
+values (115, 9400,'10-OCT-23',16,5)
+
+insert into dOrders 
+values (116, 7899,'11-OCT-23',17,6)
+
+insert into dOrders 
+values (117, 3500,'12-OCT-23',18,7)
+
+insert into dOrders 
+values (118, 8700,'13-OCT-23',19,8)
+
+insert into dOrders 
+values (119, 5900,'14-OCT-23',20,9)
+
+insert into dOrders 
+values (120, 7890,'15-OCT-23',null,10)
+
+
+
+ 
+select * from dsalespeople
+select * from dcustomer
+select * from dorders
+
+
+--                                            NOW WE ARE PERFORMING UPDATE OPERATION ON ABOVE TABLES
+
+--UPDATE    
+
+select * from dsalespeople
+
+update dsalespeople
+set city='Pune'
+where snum=2
+
+--UPDATING TWO COLUMN WITH SUBQUERY
+
+update dsalespeople
+set (sname,city)=(select cname,city from dcustomer
+                  where cnum=17 )
+where snum=9;           
+
+
+
+--                                                DELETE,TRUNCATE,RECYLEBIN AND ROLL BACK
+--DELETE
+
+delete from dcustomer
+where cnum=17
+
+--TRUNCATE 
+truncate table dorders
+
+
+
+--                                                DATABASE OBJECT VIEW
+
+
+--CREATING VIEW
+
+select * from employees
+
+create view vw_dept80
+as select employee_id ,first_name,job_id,salary from employees 
+where department_id=80
+
+select * from vw_dept80
+
+
+--                                                VIEW INFORMATION
+
+desc user_views
+
+select text from user_views
+
+
+--                                                    DROP VIEW
+
+drop view vm_dept80
+
+commit
+
+
+--                      25-10-23
+
+--SEQUENCES
+
+create sequence depseq
+start with 52
+increment by 2
+maxvalue 99
+nocache
+nocycle;
+
+--ALTER THE SEQUENCES
+
+alter sequence depseq
+increment by 3
+maxvalue 999
+
+--How to insert sequence
+
+create table depq
+(
+dept_id number(5) constraint d_ppk primary key,
+dept_name varchar2(30),
+manager_id number(5)
+);
+
+
+insert into depq 
+values (DEPSEQ.nextval,'HR',140)
+
+
+select * from depq
+
+--How to view created sequence
+
+select * from user_sequences
+
+
+
+--                             INDEXES
+
+
+create index indi on depq(dept_name)
+
+select * from user_indexes
+
+--drop index indi
+
+--                             SYSNONYMS
+
+
+create synonym sales for dsalespeople
+
+select * from sales
+
+create synonym grahak for dcustomer
+
+select * from grahak
+
+create synonym orderss for dorders
+
+select * from orderss
+
+
+--HOW TO GIVE CONSTRAINT TO ALREADY CREATED TABLE
+
+create table depql
+(
+dept_id number(5) ,
+dept_name varchar2(30),
+manager_id number(5)
+);
+
+
+insert into depql
+values (DEPSEQ.nextval,'IT',230)
+
+select * from depql
+
+--ADDING PRIMARY KEY
+
+alter table depql modify dept_id primary key
+
+
+--PRIMARY KEY
+
+alter table depql modify  dept_id
+references dorders(dept_id)
+
+
+
+
+
+
+
+

@@ -1,0 +1,182 @@
+1 Write a MongoDB query to find the restaurants that do not prepare any cuisine of 
+'American' and their grade score more than 70 and latitude less than -65.754168. 
+
+---Hotels> db.Hotels.find({ cuisine: { $ne: 'American' }, "grades.score": { $gt: 70 }, "address.coord.1": { $lt: -65.754168 } },{name:1,_id:0});
+
+
+2. Write a MongoDB query to find the restaurants which do not prepare any cuisine of 
+'American' and achieved a score more than 70 and located in the longitude less than -
+65.754168.
+ans:
+
+----Hotels> db.Hotels.find({ cuisine: { $ne: 'American' }, "grades.score": { $gt: 70 }, "address.coord.0": { $lt: -65.754168 } },{name:1,_id:0});
+[
+  { name: 'Gandhi' },
+  { name: 'El Molino Rojo Restaurant' },
+  { name: 'Bella Napoli' },
+  { name: 'Fortunato Bros Cafe & Bakery' },
+  { name: 'Two Boots Grand Central' },
+  { name: 'Spicy Shallot' },
+  { name: 'Midtown Buffet' },
+  { name: "Pino'S La Forchetta" },
+  { name: 'Los Pollitos Iii' },
+  { name: 'East Japanese Restaurant' },
+  { name: 'Los Mismo Restaurant' },
+  { name: 'Brothers Fish Market' },
+  { name: 'Anella' },
+  { name: 'Ming Wong Restaurant' },
+  { name: "Baluchi'S Indian Food" },
+  { name: 'La Trattoria' },
+  { name: 'Gal Bi Ma Eul' },
+  { name: 'Wonton Noodle Garden' },
+  { name: 'Cheikh Umar Futiyu Restaurant' },
+  { name: 'Takesushi' }
+]
+Type "it" for more
+
+3. Write a MongoDB query to find the restaurants which do not prepare any cuisine of 
+'American ' and achieved a grade point 'A' not belongs to the borough Brooklyn. The 
+document must be displayed according to the cuisine in descending order.
+
+-----db.Hotels.find({ cuisine: { $ne: 'American' }, "grades.grade": 'A', borough: { $ne: 'Brooklyn' } }).sort({ cuisine: -1 });
+
+
+ 
+4. Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those 
+restaurants which contain 'Wil' as first three letters for its name.
+
+----Hotels> db.Hotels.find( { name: { $regex: /^Wil/i } }, { restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 } );
+
+5. Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those 
+restaurants which contain 'ces' as last three letters for its name.
+
+---Hotels> db.Hotels.find( { name: { $regex: /ces$/i } }, { restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 } ); 
+
+6. Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those 
+restaurants which contain 'Reg' as three letters somewhere in its name.
+
+-------------Hotels> db.Hotels.find( { name: { $regex: /Reg/i } }, { restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 } ); 
+
+7. Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those 
+restaurants which belong to the borough Staten Island or Queens or Bronxor Brooklyn.
+ans:
+------------Hotels> db.Hotels.find( { borough: { $in: ["Staten Island", "Queens", "Bronx", "Brooklyn"] } }, { restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 } );
+ 
+8. Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those 
+restaurants which are not belonging to the borough Staten Island or Queens or Bronxor 
+Brooklyn. 
+
+--------------------Hotels> db.Hotels.find( { borough: { $nin: ["Staten Island", "Queens", "Bronx", "Brooklyn"] } }, { restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 } );
+
+9. Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those 
+restaurants which achieved a score which is not more than 10
+
+Hotels> db.Hotels.find( { "grades.score": { $lte: 10 } }, { restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0 } );
+
+10.Write a query To update rating to 2 for movie padmavat
+
+--------------Movies> db.Movie.updateOne( { name: "padmavat" }, { $set: { rating: 2 } });
+
+11.Write a query to update rating of padmavat and Andhadhund to 6
+and increse the price by 10 if price is not null
+
+---------------Movies> db.Movie.update( { name: { $in: ["padmavat", "Andhadhund"] } }, { $set: { rating: 6 }, $inc: { price: 10 } }, { name:1 } );
+
+12.Write a query to delete price from padmavat movie
+
+--------------Movies> db.Movie.update( { name: "padmavat" }, { $unset: { price: "" } } );
+
+13.Write a query overwrite rating of movie padmavat by 4 if the current rating is <4
+
+-----Movies> db.Movie.update( { name: "padmavat", rating: { $lt: 4 } }, { $set: { rating: 4 } } );
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+14.Write a query to remove keys cancellation and updated key from movie sholey
+
+-------------Movies> db.Movie.update( { name: "sholay" }, { $unset: { cancellation: 1, updated: 1 } } );
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+
+
+15.Write a query to increse the value of ticket price by 10% of 3 idiots.
+
+----------Movies> db.Movie.update( { name: "3 idiots" }, { $mul: { price: 1.1 } } );
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+16.Write a query to decrease the price to half.
+
+----------Movies> db.Movie.update( { name: "3 idiots" }, { $mul: { price: 0.5 } } );
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+17.Write a query to change the key name of price to current_price of all movies.
+
+----------Movies> db.Movie.update( {}, { $rename: { "price": "current_price" } });
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+
+18.Write a query to overwrite rating by 6 and  price by 200 for movie Titanic 
+if exists otherwise add new document
+
+-----------Movies> db.Movie.update( { name: "Titanic" }, { $set: { rating: 6, price: 200 } }, { upsert: true } );
+{
+  acknowledged: true,
+  insertedId: ObjectId("654658b5436cd50658458f01"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+
+19.Write a query to increase price by 50 for all movies with number of tickets are either 200, 250 or 300
+
+-----Movies> db.Movie.updateMany( { ticket_no: { $in: [200, 250, 300] } }, { $inc: { price: 50 } } );
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+20.Write a query to remove key ticket_num from all movies with name starts with K or p 
+
+--------------
+Movies> db.Movie.updateMany( { name: { $regex: '^[KkPp]' } }, { $unset: { ticket_no: 1 } } );
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+

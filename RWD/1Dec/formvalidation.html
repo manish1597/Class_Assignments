@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        #namespan, #mobilespan,#genderspan {
+            color: red;
+        }
+    </style>
+</head>
+<body align="center">
+
+    <script>
+        function validation() {
+            // For Username
+            var s = /(^[A-Za-z']{2,15}$)/;
+            var name = document.getElementById('username').value;
+
+            if (name === "") {
+                document.getElementById('namespan').innerHTML = "Please Enter valid username";
+                return false;
+            } else if (!name.match(s)) {
+                document.getElementById('namespan').innerHTML = "Please Enter valid username";
+                return false;
+            } else {
+                document.getElementById('namespan').innerHTML = "";
+            }
+
+            // For Mobile number validation
+            var m = /(^[6-9]{1}[0-9]{9}$)/;
+            var mobile = document.getElementById('mobileNo').value.trim(); // Remove leading/trailing spaces
+
+            if (mobile === "") {
+                document.getElementById('mobilespan').innerHTML = "Please Enter Mobile number";
+                return false;
+            } else if (!mobile.match(m)) {
+                document.getElementById('mobilespan').innerHTML = "Please Enter valid Mobile number";
+                return false;
+            } else {
+                document.getElementById('mobilespan').innerHTML = "";
+            }
+
+
+            
+
+            // For Radio Button Validation
+                var male = document.getElementById('male').checked;
+                var female = document.getElementById('female').checked; // Fix the typo here
+
+                if (male == false && female == false) {
+                    document.getElementById('genderspan').innerHTML = "Please select an option";
+                    return false;
+                } else {
+                    document.getElementById('genderspan').innerHTML = "";
+                }
+
+
+            return true; // Allow form submission if both validations pass
+        }
+    </script>
+
+    <form action="" onsubmit="return validation()">
+        Username: <input type="text" name="username" id="username"><span id="namespan"></span>
+        <br><br>
+        MobileNo.: <input type="text" name="mobile" id="mobileNo"><span id="mobilespan"></span>
+        <br><br>
+        Gender:<input type="radio" name="Gender" id="male" value="male">male
+        <input type="radio" name="Gender" id="female" value="female">Female
+        <span id="genderspan"></span>
+
+
+        <br><br>
+
+
+        <input type="Submit">
+        <input type="reset" name="">
+    </form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <script src="C:\Users\manis\Desktop\RWD\2Dec\j.js"></script>
+
+    <style>
+        #ol1, #ul1 {
+            display: none;
+        }
+        .list-container {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            $('.list-container').mouseenter(function(){
+                $('#ol1').slideDown(2000);
+                $('#ul1').slideDown(2000);
+            })
+            $('.list-container').mouseleave(function(){
+                $('#ol1').slideUp(2000);
+                $('#ul1').slideUp(2000);
+            })
+        })
+    </script>
+
+    <div style="background-color: black; color: white;" class="list-container">
+        <span id="hed1" style="font-size: 32px;"> Ordered List</span>
+        <ol id="ol1">
+            <li>Items</li>
+            <li>Items</li>
+            <li>Items</li>
+            <li>Items</li>
+            <li>Items</li>
+        </ol>
+    </div>
+
+    <div style="background-color: black; color: white;" class="list-container">
+        <span id="hed2" style="font-size: 32px;"> UnOrdered List</span>
+        <ul id="ul1">
+            <li>Items</li>
+            <li>Items</li>
+            <li>Items</li>
+            <li>Items</li>
+            <li>Items</li>
+        </ul>
+    </div>
+</body>
+</html>
